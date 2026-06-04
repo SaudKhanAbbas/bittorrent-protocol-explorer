@@ -13,6 +13,9 @@ class BencodeDecoder:
         if current_char.isdigit():
             return self.decode_string()
 
+        if current_char == "l":
+            return self.decode_list()
+
         raise ValueError(f"Unsupported type: {current_char}")
 
     def decode_integer(self):
@@ -39,9 +42,19 @@ class BencodeDecoder:
 
         return result
 
+    def decode_list(self):
+        self.index += 1
 
-decoder1 = BencodeDecoder("i42e")
-print(decoder1.decode())
+        result = []
 
-decoder2 = BencodeDecoder("5:hello")
-print(decoder2.decode())
+        while self.data[self.index] != "e":
+            result.append(self.decode())
+
+        self.index += 1
+
+        return result
+
+
+decoder = BencodeDecoder("l5:helloi42ee")
+
+print(decoder.decode())

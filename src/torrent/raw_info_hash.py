@@ -1,3 +1,5 @@
+import hashlib
+
 TORRENT_FILE = "torrents/ubuntu.torrent"
 
 
@@ -15,11 +17,9 @@ def main():
 
     info_start = marker_position + len(info_marker)
 
-    print("Info Dictionary Starts At:")
-
-    print(info_start)
-
     nesting_level = 0
+
+    info_end = None
 
     for i in range(info_start, len(torrent_bytes)):
 
@@ -35,13 +35,20 @@ def main():
                 info_end = i + 1
                 break
 
-    print("\nInfo Dictionary Ends At:")
+    if info_end is None:
+        raise ValueError("Could not determine end of info dictionary.")
 
-    print(info_end)
+    info_bytes = torrent_bytes[info_start:info_end]
+
+    info_hash = hashlib.sha1(info_bytes).hexdigest()
+
+    print("\n===== REAL INFO HASH =====\n")
+
+    print(info_hash)
 
     print("\nInfo Dictionary Size:")
 
-    print(info_end - info_start)
+    print(len(info_bytes))
 
 
 if __name__ == "__main__":

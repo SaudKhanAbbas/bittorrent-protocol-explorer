@@ -16,6 +16,9 @@ class BencodeDecoder:
         if current_char == "l":
             return self.decode_list()
 
+        if current_char == "d":
+            return self.decode_dictionary()
+
         raise ValueError(f"Unsupported type: {current_char}")
 
     def decode_integer(self):
@@ -54,7 +57,22 @@ class BencodeDecoder:
 
         return result
 
+    def decode_dictionary(self):
+        self.index += 1
 
-decoder = BencodeDecoder("l5:helloi42ee")
+        result = {}
+
+        while self.data[self.index] != "e":
+            key = self.decode()
+            value = self.decode()
+
+            result[key] = value
+
+        self.index += 1
+
+        return result
+
+
+decoder = BencodeDecoder("d4:name5:Saude")
 
 print(decoder.decode())

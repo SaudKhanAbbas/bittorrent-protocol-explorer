@@ -72,9 +72,6 @@ def get_info_hash(torrent_bytes):
 
     marker_pos = torrent_bytes.find(marker)
 
-    if marker_pos == -1:
-        raise ValueError("Info dictionary not found")
-
     info_start = marker_pos + len(marker)
 
     tracker = BencodePositionTracker(torrent_bytes)
@@ -94,16 +91,23 @@ def build_handshake(info_hash, peer_id):
 
     protocol = b"BitTorrent protocol"
 
-    protocol_length = len(protocol)
-
     reserved = b"\x00" * 8
 
-    handshake = (
-        bytes([protocol_length])
+    return (
+        bytes([len(protocol)])
         + protocol
         + reserved
         + info_hash
         + peer_id
     )
 
-    return handshake
+
+def parse_handshake(handshake):
+
+    return {
+        "protocol_length": handshake[0],
+        "protocol": handshake[1:20],
+        "reserved": handshake[20:28],
+        "info_hash": handshake[28:48],
+        "peer_id": handshake[48:68]
+    }

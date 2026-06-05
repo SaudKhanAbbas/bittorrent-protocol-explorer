@@ -1,5 +1,7 @@
 import socket
 
+from src.peer.handshake import parse_handshake
+
 HOST = "127.0.0.1"
 PORT = 6881
 
@@ -23,9 +25,30 @@ def main():
 
     handshake = client_socket.recv(68)
 
-    print("\nReceived Handshake:\n")
+    parsed = parse_handshake(handshake)
 
-    print(handshake)
+    print("\n===== HANDSHAKE VALIDATION =====\n")
+
+    print("Protocol Length:")
+
+    print(parsed["protocol_length"])
+
+    print("\nProtocol:")
+
+    print(parsed["protocol"])
+
+    print("\nPeer ID:")
+
+    print(parsed["peer_id"])
+
+    print("\nInfo Hash:")
+
+    print(parsed["info_hash"].hex())
+
+    if parsed["protocol"] == b"BitTorrent protocol":
+        print("\nVALID BITTORRENT PEER")
+    else:
+        print("\nINVALID PROTOCOL")
 
     client_socket.close()
 

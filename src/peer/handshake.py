@@ -72,6 +72,9 @@ def get_info_hash(torrent_bytes):
 
     marker_pos = torrent_bytes.find(marker)
 
+    if marker_pos == -1:
+        raise ValueError("Info dictionary not found")
+
     info_start = marker_pos + len(marker)
 
     tracker = BencodePositionTracker(torrent_bytes)
@@ -104,30 +107,3 @@ def build_handshake(info_hash, peer_id):
     )
 
     return handshake
-
-
-def main():
-
-    with open(TORRENT_FILE, "rb") as file:
-        torrent_bytes = file.read()
-
-    info_hash = get_info_hash(torrent_bytes)
-
-    peer_id = b"-PC0001-123456789012"
-
-    handshake = build_handshake(
-        info_hash,
-        peer_id
-    )
-
-    print("Handshake Length:")
-
-    print(len(handshake))
-
-    print("\nHandshake Bytes:\n")
-
-    print(handshake)
-
-
-if __name__ == "__main__":
-    main()

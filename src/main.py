@@ -5,7 +5,7 @@ from src.tracker.tracker import Tracker
 def print_header():
 
     print("=" * 50)
-    print("        MINI BITTORRENT CLIENT v1.0")
+    print("        BITTORRENT PROTOCOL EXPLORER v1.0")
     print("=" * 50)
 
 

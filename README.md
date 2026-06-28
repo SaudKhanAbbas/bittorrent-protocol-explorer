@@ -193,9 +193,3 @@ I wanted a project that would teach me more than just writing application code.
 Building this helped me understand what actually happens behind the scenes when a torrent starts downloading and how peers communicate over a network.
 
 More importantly, it gave me experience reading protocol specifications, debugging binary data, and organizing a project into reusable modules.
-
----
-
-# License
-
-This project is available under the MIT License.

@@ -180,10 +180,6 @@ Some features I'd like to add later:
 
 ---
 
-# Why I Built This
+Why I Built This
 
-I wanted a project that would teach me more than just writing application code.
-
-Building this helped me understand what actually happens behind the scenes when a torrent starts downloading and how peers communicate over a network.
-
-More importantly, it gave me experience reading protocol specifications, debugging binary data, and organizing a project into reusable modules.
+I built this project to better understand how BitTorrent works internally. Along the way, I learned how to read protocol specifications, debug binary data, and organize a networking project into reusable modules.

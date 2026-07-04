@@ -1,10 +1,6 @@
-# BitTorrent Protocol Explorer
+BitTorrent Protocol Explorer
 
-An educational implementation of the BitTorrent protocol built from scratch in Python.
-
-The goal of this project was to understand how BitTorrent works under the hood instead of simply using an existing library. While building it, I learned how torrent files are structured, how peers communicate, how binary protocols work, and how data is exchanged over TCP sockets.
-
-This project focuses on understanding and implementing the core parts of the BitTorrent protocol. It is intended as a learning project rather than a production-ready BitTorrent client.
+An educational implementation of the BitTorrent protocol built from scratch in Python to understand how BitTorrent works under the hood. This project focuses on implementing the protocol's core components for learning purposes rather than building a production-ready client.
 
 ---
 

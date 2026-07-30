@@ -9,6 +9,7 @@ def build_bitfield(bitfield_bytes):
         length.to_bytes(4, "big")
         + bytes([MESSAGE_ID])
         + bitfield_bytes
+    )
     
 
     return message

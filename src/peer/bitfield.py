@@ -3,7 +3,7 @@ MESSAGE_ID = 5
 
 def build_bitfield(bitfield_bytes):
 
-    length = len(bitfield_bytes) + 1
+    length = len(bitfield_bytes) + 
 
     message = (
         length.to_bytes(4, "big")

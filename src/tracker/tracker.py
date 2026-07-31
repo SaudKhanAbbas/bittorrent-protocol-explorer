@@ -1,7 +1,7 @@
 import urllib.parse
 import urllib.request
 
-from src.torrent.torrent import 
+from src.torrent.torrent import Torrent
 
 
 class Tracker:
